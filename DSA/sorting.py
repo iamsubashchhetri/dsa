@@ -47,10 +47,10 @@ nums=[5,7,8,4,1,6,9,2]
 #         nums[j+1]=key
 #     return nums
 
-'''Merge sorting in DSA
+"""Merge sorting in DSA
 num= [3,4,5,2,3,5,6,3]
 
-left=[3,4,5,2]  right =[3,5,6,3]'''
+left=[3,4,5,2]  right =[3,5,6,3]"""
 
 # def merge_array(left, right):
 #     result = []
@@ -91,7 +91,7 @@ left=[3,4,5,2]  right =[3,5,6,3]'''
 # print("Merge Sort:", merge_sort([3, 4, 5, 2, 3, 5, 6, 3]))
 
 
-'''
+"""
  Quick Sort algo
  nums=[4,1,7,6,3,2,8]
  1) Pick a pivot
@@ -100,34 +100,37 @@ left=[3,4,5,2]  right =[3,5,6,3]'''
  - it can be the middle element
   - it can be any random element
   
-  2) Put the Pivot at its correct Position/index'''
+  2) Put the Pivot at its correct Position/index"""
 
-def partition(nums, low, high):
-    pivot = nums[low]  # Use first element as pivot
-    i = low + 1
-    j = high
-    while True:
-        while i <= j and nums[i] <= pivot:
-            i += 1
-        while i <= j and nums[j] > pivot:
-            j -= 1
-        if i <= j:
-            nums[i], nums[j] = nums[j], nums[i]
-        else:
-            break
-    nums[low], nums[j] = nums[j], nums[low]
-    return j
 
-def quicksort(nums, low, high):
-    if low < high:
-        p_index = partition(nums, low, high)
-        quicksort(nums, low, p_index - 1)
-        quicksort(nums, p_index + 1, high)
+# def partition(nums, low, high):
+#     pivot = nums[low]  # Use first element as pivot
+#     i = low
+#     j = high
+#     while i<j:
+#         while i<=high-1 and nums[i] <= pivot:
+#             i += 1
+#         while low+1 <= j and nums[j] > pivot:
+#             j -= 1
+#         if i <= j:
+#             nums[i], nums[j] = nums[j], nums[i]
+#         else:
+#             break
+#     nums[low], nums[j] = nums[j], nums[low]
+#     return j
 
-# Example usage:
-nums = [4, 1, 7, 6, 3, 2, 8]
-quicksort(nums, 0, len(nums) - 1)
-print("Quick Sort (first element as pivot):", nums)
+
+# def quicksort(nums, low, high):
+#     if low < high:
+#         p_index = partition(nums, low, high)
+#         quicksort(nums, low, p_index - 1)
+#         quicksort(nums, p_index + 1, high)
+
+
+# # Example usage:
+# nums = [4, 1, 7, 6, 3, 2, 8]
+# quicksort(nums, 0, len(nums) - 1)
+# print("Quick Sort (first element as pivot):", nums)
 
 
 # Time Complexity (TC):
@@ -138,16 +141,5 @@ print("Quick Sort (first element as pivot):", nums)
 # Space Complexity (SC):
 # Best/Average: O(log n)     (recursion stack depth)
 # Worst Case:   O(n)         (recursion stack depth for sorted input)
-
-
-
-
-
-
-
-
-
-
-
 
 
