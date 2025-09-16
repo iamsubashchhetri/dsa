@@ -128,7 +128,6 @@ nums = [3, 3, 5, 6, 7, 8]
 # nums = [1, 2, 3, 4, 5]
 
 
-
 # def left_rotatae(nums):
 #    left_element = nums[0]
 #    n = len(nums)
@@ -157,32 +156,111 @@ nums = [3, 3, 5, 6, 7, 8]
 #         nums[:] = nums[-k:] + nums[:-k]
 #         # No return needed; modifies nums in-place
 
-from typing import List
+# from typing import List
 
-class Solution:
-    def rotate(self, nums: List[int], k: int) -> None:
-        n = len(nums)
-        k = k % n  # Handle cases where k > n
 
-        def reverse(left: int, right: int) -> None:
-            while left < right:
-                nums[left], nums[right] = nums[right], nums[left]
-                left += 1
-                right -= 1
+# class Solution:
+#     def rotate(self, nums: List[int], k: int) -> None:
+#         n = len(nums)
+#         k = k % n  # Handle cases where k > n
 
-        # Step 1: Reverse last k elements
-        reverse(n - k, n - 1)
+#         def reverse(left: int, right: int) -> None:
+#             while left < right:
+#                 nums[left], nums[right] = nums[right], nums[left]
+#                 left += 1
+#                 right -= 1
 
-        # Step 2: Reverse first n-k elements
-        reverse(0, n - k - 1)
+#         # Step 1: Reverse last k elements
+#         reverse(n - k, n - 1)
 
-        # Step 3: Reverse whole array
-        reverse(0, n - 1)
+#         # Step 2: Reverse first n-k elements
+#         reverse(0, n - k - 1)
+
+#         # Step 3: Reverse whole array
+#         reverse(0, n - 1)
+
 
 # Example usage:
 # nums = [1,2,3,4,5,6,7]
 # k = 3
 # Solution().rotate(nums, k)
 # print(nums)  # Output: [5,6,7,1,2,3,4]
+
+
+#LINEAR SEARCH
+
+nums=[5,3,9,8,1,6,4,-10,-100] target=4
+nums = [5, 3, 9, 8, 1, 6, 4, -10, -100]
+
+
+def linear_search(nums):
+    n = len(nums)
+    for i in range(0, n):
+        if nums[i] == 4:
+            return i
+    return -1
+
+
+print(linear_search(nums))
+# Time COmplexity= O(N)
+# SC= O(1)
+
+# Merge 2 Sorted Arrays Without Duplicates
+nums1 = [1, 1, 1, 2, 4, 6, 7]
+nums2 = [1, 2, 3, 6, 7, 8, 9, 10]
+
+def sorted_array(nums1, nums2):
+    n, m = len(nums1), len(nums2)
+    result = []
+    i = j = 0
+
+    while i < n and j < m:
+        if nums1[i] <= nums2[j]:
+            if len(result) == 0 or result[-1] != nums1[i]:
+                result.append(nums1[i])
+            i += 1
+        else:
+            if len(result) == 0 or result[-1] != nums2[j]:  
+                result.append(nums2[j])
+            j += 1
+
+    while i < n:
+        if len(result) == 0 or result[-1] != nums1[i]:
+            result.append(nums1[i])
+        i += 1
+
+    while j < m:
+        if len(result) == 0 or result[-1] != nums2[j]:
+            result.append(nums2[j])
+        j += 1
+
+    return result
+
+print(sorted_array(nums1, nums2))
+# Time = O(n + m)
+# Space = O(n + m) (for the result array).If we don’t count the output list the extra space used is just O(1).
+
+# You are given an array of size n containing distinct numbers from 0 to n.
+# That means the array has n numbers but one number is missing.
+# You need to find the missing number.
+
+# OPTIMAL
+def missingNumber(nums):
+    n = len(nums)
+    total = n * (n + 1) // 2
+    return total - sum(nums)
+
+
+print(missingNumber([3,0,1]))  # Output: 2
+# Time: O(n)
+# Space: O(1)
+
+# NOT OPTIMAL 
+def missingNumber(nums):
+    nums.sort()
+    for i in range(len(nums)):
+        if nums[i] != i:
+            return i
+    return len(nums)
 
 
