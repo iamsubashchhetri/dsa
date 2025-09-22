@@ -24,7 +24,7 @@ nums=[5,7,8,4,1,6,9,2]
 
 #     for i in range(n-2,-1,-1):
 #         for j in range(0,i+1):
-#          if nums[j]> nums[j+1]:
+#           if nums[j]> nums[j+1]:
 #           nums[j],nums[j+1]=nums[j+1],nums[j]
 #     return nums
 
