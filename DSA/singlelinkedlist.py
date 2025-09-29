@@ -202,3 +202,140 @@ class Solution:
 
 # Time Complexity: O(n)  
 # Space Complexity: O(1)
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+
+
+
+"""
+Leetcode 142 - Linked List Cycle II
+Given the head of a linked list, return the node where the cycle begins.
+If there's no cycle, return None.
+
+"""
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow = head
+        fast = head
+
+        # Step 1: Detect if cycle exists
+        while fast and fast.next:
+            slow = slow.next
+            fast = fast.next.next
+
+            if slow == fast:
+                # Step 2: Find cycle start
+                slow = head
+                while slow != fast:
+                    slow = slow.next
+                    fast = fast.next
+                return slow  # cycle start node
+        return None  # no cycle
+
+"""
+Input:  head = [1 → 2 → 3 → 4 → 5]
+         and 5 connects back to 3
+Output: 3
+Explanation: The cycle is (3 → 4 → 5), so length = 3.
+
+"""
+from typing import Optional
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+class Solution:
+    def countNodesinLoop(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        slow=head
+        fast=head
+
+        while fast  is not None and fast.next is not None:
+            slow = slow.next
+            fast = fast.next.next
+            
+            if slow==fast:
+                count=1
+                temp=slow.next
+                while slow!=temp:
+                 count+=1
+                 temp=temp.next
+                return count
+        return 0
+    
+
+
+"""
+Understand the Problem
+You’re given a singly linked list.You need to reorder the nodes so that:All nodes at odd positions come first
+Then all nodes at even positions
+Example:
+
+Input:  1 -> 2 -> 3 -> 4 -> 5
+Output: 1 -> 3 -> 5 -> 2 -> 4
+"""
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def oddEvenList(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        if head is None or head.next is None:
+            return head
+
+        odd=head
+        even=head.next
+        even_head=even
+        while even is not None and even.next is not None:
+            odd.next= odd.next.next
+            odd=odd.next
+            even.next=even.next.next
+            even=even.next
+        odd.next=even_head
+
+        return head
+
+"""
+Problem:
+
+Given the head of a singly linked list, remove the nth node from the end of the list and return the modified list.
+
+Follow-up: Can you do it in one pass?
+
+Example 1:
+
+Input: head = [1,2,3,4,5], n = 2
+Output: [1,2,3,5]
+Explanation: The 2nd node from the end is 4, which is removed.
+
+"""
+# class ListNode:
+#     def __init__(self, val=0, next=None):
+#         self.val = val
+#         self.next = next
+class Solution:
+    def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        slow=head
+        fast=head
+        for _ in range(n):
+            fast=fast.next
+             
+        if fast==None:
+            return head.next
+        while fast.next is not None:
+            slow=slow.next
+            fast=fast.next
+        slow.next=slow.next.next
+
+        return head
